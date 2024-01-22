@@ -36,7 +36,7 @@ public class MainActivity extends Activity {
         mWebView.getSettings().setAllowFileAccess(true);
         mWebView.getSettings().setAllowContentAccess(true);
         mWebView.getSettings().setSaveFormData(true);
-        mWebView.getSettings().setAppCacheEnabled(true);
+        mWebView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
 
         mWebView.setWebViewClient(new WebAppWebViewClient(getApplicationContext()));
         mWebView.setWebChromeClient(new WebChromeClient(){
