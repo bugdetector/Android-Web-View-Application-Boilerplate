@@ -2,4 +2,5 @@
 <resources>
     <string name="app_name">Web View App</string>
     <string name="downloading">İndiriliyor..</string>
+    <string name="_default">Varsayılan</string>
 </resources>

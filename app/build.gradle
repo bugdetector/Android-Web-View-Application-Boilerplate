@@ -1,4 +1,10 @@
+plugins {
+    id("com.android.application")
+    id("com.google.gms.google-services")
+}
+
 apply plugin: 'com.android.application'
+
 
 android {
     compileSdkVersion 34
@@ -17,8 +23,35 @@ android {
         }
     }
     namespace 'com.webviewapp.app'
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation("androidx.annotation:annotation:1.7.1")
+    implementation("androidx.vectordrawable:vectordrawable-animated:1.1.0")
+    implementation("androidx.core:core-ktx:1.12.0")
+
+    // Required when asking for permission to post notifications (starting in Android 13)
+    implementation("androidx.activity:activity-ktx:1.8.2")
+    implementation("androidx.fragment:fragment-ktx:1.6.2")
+
+    implementation("com.google.android.material:material:1.11.0")
+
+    // Import the Firebase BoM (see: https://firebase.google.com/docs/android/learn-more#bom)
+    implementation(platform("com.google.firebase:firebase-bom:32.7.1"))
+
+    // Firebase Cloud Messaging
+    implementation("com.google.firebase:firebase-messaging")
+
+    // For an optimal experience using FCM, add the Firebase SDK
+    // for Google Analytics. This is recommended, but not required.
+    implementation("com.google.firebase:firebase-analytics")
+
+    implementation("com.google.firebase:firebase-installations:17.2.0")
+
+    implementation("androidx.work:work-runtime:2.9.0")
 }

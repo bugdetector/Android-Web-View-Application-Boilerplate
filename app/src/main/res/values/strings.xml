@@ -4,5 +4,8 @@
     <string name="app_name">Web View App</string>
     <string name="downloading">Downloading…</string>
     <string name="host" translatable="false">www.example.com</string>
-
+    <string name="cookie_storage_host" translatable="false">https://www.example.com</string>
+    <string name="firebase_token_register_url" translatable="false">https://www.example.com/notifications/saveAndroidFcmSubscription</string>
+    <string name="default_notification_channel_id" translatable="false">web_app_default_channel</string>
+    <string name="_default">Default</string>
 </resources>
