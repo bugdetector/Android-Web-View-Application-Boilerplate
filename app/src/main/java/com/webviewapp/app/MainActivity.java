@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
 
         notificationRequestPermissionLauncher = registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
             if (isGranted) {
-                subscripbeFCMToken(
+                subscribeFCMToken(
                         ((WebAppWebViewClient) mWebView.getWebViewClient()).getSessionToken()
                 );
             }
@@ -154,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS) ==
                     PackageManager.PERMISSION_GRANTED) {
-                subscripbeFCMToken(sessionToken);
+                subscribeFCMToken(sessionToken);
             } else {
                 // Directly ask for the permission
                 notificationRequestPermissionLauncher.launch(android.Manifest.permission.POST_NOTIFICATIONS);
@@ -176,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void subscripbeFCMToken(String sessionToken){
+    private void subscribeFCMToken(String sessionToken){
         FirebaseMessaging.getInstance().getToken()
                 .addOnCompleteListener(task -> {
                     if (!task.isSuccessful()) {

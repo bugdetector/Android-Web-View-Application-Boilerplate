@@ -21,12 +21,13 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
+
+import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 import android.util.Log;
 
@@ -35,25 +36,17 @@ import com.google.firebase.messaging.RemoteMessage;
 import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkManager;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.time.LocalDateTime;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
  * NOTE: There can only be one service in each app that receives FCM messages. If multiple
  * are declared in the Manifest then the first one will be chosen.
- *
  * In order to make this Java sample functional, you must remove the following from the Kotlin messaging
  * service in the AndroidManifest.xml:
- *
  * <intent-filter>
  *   <action android:name="com.google.firebase.MESSAGING_EVENT" />
  * </intent-filter>
@@ -127,11 +120,11 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
      * 2) Whenever an existing token is changed
      * Under #2, there are three scenarios when the existing token is changed:
      * A) App is restored to a new device
-     * B) User uninstalls/reinstalls the app
+     * B) User uninstalls/re installs the app
      * C) User clears app data
      */
     @Override
-    public void onNewToken(String token) {
+    public void onNewToken(@NonNull String token) {
         Log.d(TAG, "Refreshed token: " + token);
 
         // If you want to send messages to this application instance or
@@ -161,7 +154,6 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
 
     /**
      * Persist token to third-party servers.
-     *
      * Modify this method to associate the user's FCM registration token with any
      * server-side account maintained by your application.
      *
@@ -243,10 +235,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
             connection.setDoInput(true);
             connection.connect();
             in = connection.getInputStream();
-            Bitmap bitmap = BitmapFactory.decodeStream(in);
-            return bitmap;
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
+            return BitmapFactory.decodeStream(in);
         } catch (IOException e) {
             e.printStackTrace();
         }

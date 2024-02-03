@@ -12,16 +12,16 @@ import java.util.Scanner;
  */
 public class URLRequestHandler {
     private String response;
-    private String URL;
+    private final String URL;
 
-    private Map<String, String> headers;
-    private byte[] bytedata;
+    private final Map<String, String> headers;
+    private final byte[] byteData;
     public URLRequestHandler(
             String data,
             String url,
             Map<String, String> headers
     ){
-        bytedata = data.getBytes();
+        byteData = data.getBytes();
         this.URL = url;
         this.headers = headers;
     }
@@ -32,12 +32,12 @@ public class URLRequestHandler {
             connection.setRequestMethod("POST");
             connection.setRequestProperty("Content-Type", "application/json");
             connection.setRequestProperty("charset", "utf-8");
-            connection.setRequestProperty("Content-Length", Integer.toString(bytedata.length));
+            connection.setRequestProperty("Content-Length", Integer.toString(byteData.length));
             if(headers != null){
                 headers.forEach(connection::setRequestProperty);
             }
             DataOutputStream outputStream = new DataOutputStream(connection.getOutputStream());
-            outputStream.write(bytedata);
+            outputStream.write(byteData);
             try {
                 if (connection.getResponseCode() != 200) {
                     return false;

@@ -1,7 +1,5 @@
 package com.webviewapp.app;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.webkit.CookieManager;
@@ -9,7 +7,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 class WebAppWebViewClient extends WebViewClient {
-    private MainActivity activity;
+    private final MainActivity activity;
     private final String host;
     private final String cookieStorageHost;
 

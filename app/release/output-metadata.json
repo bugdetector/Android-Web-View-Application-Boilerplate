@@ -4,7 +4,7 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "com.cleansupply.app",
+  "applicationId": "com.webwiewapp.app",
   "variantName": "release",
   "elements": [
     {

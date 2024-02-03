@@ -12,9 +12,9 @@ import java.util.HashMap;
 public class FirebaseTokenSender implements Runnable{
     public static final String SESSION_TOKEN = "SESSION_TOKEN";
 
-    private  String tokenRegisterUrl;
-    private String sessionToken;
-    private String token;
+    private final String tokenRegisterUrl;
+    private final String sessionToken;
+    private final String token;
     public FirebaseTokenSender(
             Context context,
             String token
