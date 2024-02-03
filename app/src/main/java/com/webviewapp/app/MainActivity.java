@@ -55,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
         mWebView.getSettings().setGeolocationEnabled(true);
         mWebView.getSettings().setAllowFileAccess(true);
         mWebView.getSettings().setAllowContentAccess(true);
-        mWebView.getSettings().setSaveFormData(true);
         mWebView.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
         mWebView.getSettings().setUserAgentString("android-web-view");
 
@@ -107,15 +106,13 @@ public class MainActivity extends AppCompatActivity {
                     Toast.LENGTH_LONG).show();
         });
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            // Create channel to show notifications.
-            String channelId  = getString(R.string.default_notification_channel_id);
-            String channelName = getString(R.string._default);
-            NotificationManager notificationManager =
-                    getSystemService(NotificationManager.class);
-            notificationManager.createNotificationChannel(new NotificationChannel(channelId,
-                    channelName, NotificationManager.IMPORTANCE_DEFAULT));
-        }
+        // Create channel to show notifications.
+        String channelId  = getString(R.string.default_notification_channel_id);
+        String channelName = getString(R.string._default);
+        NotificationManager notificationManager =
+                getSystemService(NotificationManager.class);
+        notificationManager.createNotificationChannel(new NotificationChannel(channelId,
+                channelName, NotificationManager.IMPORTANCE_DEFAULT));
 
         notificationRequestPermissionLauncher = registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
             if (isGranted) {
