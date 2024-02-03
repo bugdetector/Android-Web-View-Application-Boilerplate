@@ -125,9 +125,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        locationRequestPermissionLauncher = registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
-            geolocationCallback.invoke(geolocationOrigin, isGranted, false);
-        });
+        locationRequestPermissionLauncher = registerForActivityResult(
+                new ActivityResultContracts.RequestPermission(),
+                isGranted -> geolocationCallback.invoke(geolocationOrigin, isGranted, false)
+        );
     }
 
     @Override

@@ -8,6 +8,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 public class FirebaseTokenSender implements Runnable{
     public static final String SESSION_TOKEN = "SESSION_TOKEN";
@@ -37,13 +38,13 @@ public class FirebaseTokenSender implements Runnable{
                 URLRequestHandler requestHandler = new URLRequestHandler(
                         tokenRequest.toString(),
                         tokenRegisterUrl,
-                        new HashMap<String, String>() {{
+                        new HashMap<>() {{
                             put("Authorization", "Bearer " + sessionToken);
                         }}
                 );
-                Boolean response = requestHandler.getResponseMessage();
+                requestHandler.getResponseMessage();
             } catch (JSONException exception){
-                Log.e(this.getClass().getName(), exception.getMessage());
+                Log.e(this.getClass().getName(), Objects.requireNonNull(exception.getMessage()));
             }
         }
     }
