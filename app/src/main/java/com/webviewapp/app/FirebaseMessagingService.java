@@ -61,7 +61,8 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
      */
     // [START receive_message]
     @Override
-    public void onMessageReceived(RemoteMessage remoteMessage) {
+    public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
+        super.onMessageReceived(remoteMessage);
         // [START_EXCLUDE]
         // There are two types of messages data messages and notification messages. Data messages
         // are handled

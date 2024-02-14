@@ -20,7 +20,12 @@ class WebAppWebViewClient extends WebViewClient {
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
         Uri uri = Uri.parse(url);
-        if (url.startsWith("file:") || uri.getHost() != null && uri.getHost().endsWith(this.host)) {
+        if (url.startsWith("file:") || uri.getHost() != null && (
+                uri.getHost().endsWith(this.host) ||
+                        uri.getHost().equals(
+                                (Uri.parse(this.cookieStorageHost)).getHost()
+                        )
+        )) {
             return false;
         }
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));

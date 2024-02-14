@@ -81,6 +81,10 @@ public class MainActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if(extras != null){
             loadUrl = extras.getString("url", loadUrl);
+            String extraUrl = extras.getString("url", loadUrl);
+            if(extraUrl.startsWith(loadUrl) || extraUrl.startsWith(getString(R.string.cookie_storage_host))){
+                loadUrl = extraUrl;
+            }
         }
         mWebView.loadUrl(loadUrl);
 
