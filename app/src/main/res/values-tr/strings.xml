@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Web View App</string>
+    <string name="app_name">Dorothy All In One</string>
     <string name="downloading">İndiriliyor..</string>
     <string name="_default">Varsayılan</string>
+    <string name="location_services_not_activated">Konum servisleri aktifleştirilmedi.</string>
+    <string name="location_activate_message">Lütfen ayarlardan konum servisini aktifleştirin</string>
+    <string name="close">Kapat</string>
 </resources>

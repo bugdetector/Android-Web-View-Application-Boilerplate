@@ -3,6 +3,7 @@ package com.webviewapp.app;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.app.AlertDialog;
 import android.app.DownloadManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -10,6 +11,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -169,7 +171,18 @@ public class MainActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) ==
                     PackageManager.PERMISSION_GRANTED) {
-                callback.invoke(origin, true, false);
+                LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+                if(!lm.isLocationEnabled()){
+                    new AlertDialog.Builder(this)
+                            .setTitle(getString(R.string.location_services_not_activated))
+                            .setMessage(getString(R.string.location_activate_message))
+
+                            // A null listener allows the button to dismiss the dialog and take no further action.
+                            .setNegativeButton(getString(R.string.close), null)
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .show();
+                }
+                callback.invoke(origin, lm.isLocationEnabled(), false);
             } else {
                 geolocationOrigin = origin;
                 this.geolocationCallback = callback;

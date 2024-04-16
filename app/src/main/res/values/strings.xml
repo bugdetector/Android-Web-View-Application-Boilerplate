@@ -8,4 +8,7 @@
     <string name="firebase_token_register_url" translatable="false">https://www.example.com/notifications/saveAndroidFcmSubscription</string>
     <string name="default_notification_channel_id" translatable="false">web_app_default_channel</string>
     <string name="_default">Default</string>
+    <string name="location_services_not_activated">Location services not activated.</string>
+    <string name="location_activate_message">Please activate the location service from the settings.</string>
+    <string name="close">Close</string>
 </resources>
